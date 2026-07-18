@@ -14,4 +14,7 @@ def number_to_english(n):
 
 n = int(input())
 word = number_to_english(n)
-print(word if word else "Ошибка")
+if word is not None:
+    print(word)
+else:
+    print("Число должно содержать от 1 до 5")

@@ -10,9 +10,5 @@ while True:
     else:
         print("Число должно быть положительным (больше нуля).")
 
-result = []
-while n >= 0:
-    result.append(n)
-    n -= 1
-
-print(result)
+for i in range(n, -1, -1):
+    print(i)

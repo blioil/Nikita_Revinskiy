@@ -1,7 +1,9 @@
 def element(elements_list):
     if len(elements_list) >= 2:
         elements_list[0], elements_list[-1] = elements_list[-1], elements_list[0]
-        return elements_list
+    else:
+        print("Список слишком мал, не поменялся первый и последний элемент.")
+    return elements_list
 
 my_list = ['one', 'two', 'three', 'four', 'five']
 

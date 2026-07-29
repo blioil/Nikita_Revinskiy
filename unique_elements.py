@@ -8,12 +8,14 @@ def create_list():
         my_list.append(user_input)
     return my_list
 
+
 def count_unique_elements(lst):
     try:
         return len(set(lst))
     except TypeError:
         print("Ошибка: переданный объект не является списком.")
         return 0
+
 
 def main():
     my_list = create_list()

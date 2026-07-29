@@ -23,7 +23,7 @@ library = {
 }
 
 # Функция для вывода книг
-def book_list(library):
+def book_list_view(library):
     if not library:
         print("В библиотеке нет книг")
         return  # завершаем работу функции
@@ -34,4 +34,4 @@ def book_list(library):
 
 # Вызов функции
 if __name__ == "__main__":
-    book_list(library)
+    book_list_view(library)

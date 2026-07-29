@@ -22,6 +22,7 @@ library = {
     }
 }
 
+
 # Функция для вывода книг
 def book_list_view(library):
     if not library:
@@ -31,6 +32,7 @@ def book_list_view(library):
     print("Список книг в библиотеке:")
     for i, title in enumerate(library.keys(), start=1):
         print(f"{i}: {title}")
+
 
 # Вызов функции
 if __name__ == "__main__":

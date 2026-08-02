@@ -24,6 +24,7 @@ library = {
 
 
 def book_list_view(library):
+    """Выводит только названия книг."""
     if not library:
         print("В библиотеке нет книг.")
         return
@@ -33,6 +34,7 @@ def book_list_view(library):
 
 
 def book_full_view(library):
+    """Выводит полную информацию о книгах."""
     if not library:
         print("В библиотеке нет книг.")
         return
@@ -43,10 +45,7 @@ def book_full_view(library):
 
 
 def add_book(title, author, year):
-    """
-    Добавляет книгу с наличием = None.
-    Если книга уже есть, предлагает обновить.
-    """
+    """Добавляет книгу с наличием = None. Если книга уже есть, предлагает обновить."""
     if title in library:
         print(f"Книга \"{title}\" уже существует.")
         choice = input("Хотите обновить информацию о книге? (y/n): ").strip().lower()
@@ -66,6 +65,7 @@ def add_book(title, author, year):
 
 
 def console_add_book(library):
+    """Вспомогательная функция для ввода данных при добавлении."""
     print("\n--- Добавление новой книги ---")
     title = input("Введите название книги: ").strip()
     if not title:
@@ -91,14 +91,34 @@ def console_add_book(library):
     add_book(title, author, year)
 
 
+def remove_book(title):
+    """Удаляет книгу по названию. Если книга не найдена, выводит сообщение."""
+    if title in library:
+        del library[title]
+        print(f"Книга \"{title}\" удалена из библиотеки.")
+    else:
+        print(f"Книга \"{title}\" не найдена в библиотеке.")
+
+
+def console_remove_book(library):
+    """Вспомогательная функция для ввода названия удаляемой книги."""
+    print("\n--- Удаление книги ---")
+    title = input("Введите название книги, которую хотите удалить: ").strip()
+    if not title:
+        print("Название не может быть пустым. Операция отменена.")
+        return
+    remove_book(title)
+
+
 def main_menu():
     while True:
         print("\n=== Библиотека ===")
-        print("1. Показать только названия книг ")
+        print("1. Показать только названия книг")
         print("2. Показать полную информацию о книгах")
         print("3. Добавить книгу")
-        print("4. Выйти")
-        choice = input("Выберите действие (1-4): ").strip()
+        print("4. Удалить книгу")
+        print("5. Выйти")
+        choice = input("Выберите действие (1-5): ").strip()
 
         if choice == '1':
             book_list_view(library)
@@ -107,6 +127,8 @@ def main_menu():
         elif choice == '3':
             console_add_book(library)
         elif choice == '4':
+            console_remove_book(library)
+        elif choice == '5':
             print("До свидания!")
             break
         else:

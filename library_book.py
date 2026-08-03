@@ -1,30 +1,4 @@
-# Создание библиотеки
-library = {
-    "Герой нашего времени": {
-        "автор": "Михаил Лермонтов",
-        "год издания": 1840,
-        "наличие": True
-    },
-    "Мастер и Маргарита": {
-        "автор": "Михаил Булгаков",
-        "год издания": 1966,
-        "наличие": True
-    },
-    "Горе от ума": {
-        "автор": "Александр Грибоедов",
-        "год издания": 1833,
-        "наличие": False
-    },
-    "Финансист": {
-        "автор": "Теодор Драйзер",
-        "год издания": 1912,
-        "наличие": True
-    }
-}
-
-
 def book_list_view(library):
-    """Выводит только названия книг."""
     if not library:
         print("В библиотеке нет книг.")
         return
@@ -34,7 +8,6 @@ def book_list_view(library):
 
 
 def book_full_view(library):
-    """Выводит полную информацию о книгах."""
     if not library:
         print("В библиотеке нет книг.")
         return
@@ -44,8 +17,7 @@ def book_full_view(library):
         print(f"{i}. {title} — {info['автор']} ({info['год издания']}) — {status}")
 
 
-def add_book(title, author, year):
-    """Добавляет книгу с наличием = None. Если книга уже есть, предлагает обновить."""
+def add_book(library, title, author, year):
     if title in library:
         print(f"Книга \"{title}\" уже существует.")
         choice = input("Хотите обновить информацию о книге? (y/n): ").strip().lower()
@@ -65,7 +37,6 @@ def add_book(title, author, year):
 
 
 def console_add_book(library):
-    """Вспомогательная функция для ввода данных при добавлении."""
     print("\n--- Добавление новой книги ---")
     title = input("Введите название книги: ").strip()
     if not title:
@@ -88,11 +59,10 @@ def console_add_book(library):
         print("Год должен быть положительным числом. Операция отменена.")
         return
 
-    add_book(title, author, year)
+    add_book(library, title, author, year)
 
 
-def remove_book(title):
-    """Удаляет книгу по названию. Если книга не найдена, выводит сообщение."""
+def remove_book(library, title):
     if title in library:
         del library[title]
         print(f"Книга \"{title}\" удалена из библиотеки.")
@@ -101,16 +71,15 @@ def remove_book(title):
 
 
 def console_remove_book(library):
-    """Вспомогательная функция для ввода названия удаляемой книги."""
     print("\n--- Удаление книги ---")
     title = input("Введите название книги, которую хотите удалить: ").strip()
     if not title:
         print("Название не может быть пустым. Операция отменена.")
         return
-    remove_book(title)
+    remove_book(library, title)
 
 
-def main_menu():
+def main_menu(library):
     while True:
         print("\n=== Библиотека ===")
         print("1. Показать только названия книг")
@@ -135,5 +104,30 @@ def main_menu():
             print("Неверный ввод, попробуйте снова.")
 
 
+
+library = {
+    "Герой нашего времени": {
+        "автор": "Михаил Лермонтов",
+        "год издания": 1840,
+        "наличие": True
+    },
+    "Мастер и Маргарита": {
+        "автор": "Михаил Булгаков",
+        "год издания": 1966,
+        "наличие": True
+    },
+    "Горе от ума": {
+        "автор": "Александр Грибоедов",
+        "год издания": 1833,
+        "наличие": False
+    },
+    "Финансист": {
+        "автор": "Теодор Драйзер",
+        "год издания": 1912,
+        "наличие": True
+    }
+}
+
+
 if __name__ == "__main__":
-    main_menu()
+    main_menu(library)

@@ -79,7 +79,20 @@ def console_remove_book(library):
     remove_book(library, title)
 
 
+def exit_program(library):
+    print("До свидания!")
+    return True
+
+
 def main_menu(library):
+    main_action = {
+        '1': book_list_view,
+        '2': book_full_view,
+        '3': console_add_book,
+        '4': console_remove_book,
+        '5': exit_program,
+    }
+
     while True:
         print("\n=== Библиотека ===")
         print("1. Показать только названия книг")
@@ -87,22 +100,15 @@ def main_menu(library):
         print("3. Добавить книгу")
         print("4. Удалить книгу")
         print("5. Выйти")
+
+
         choice = input("Выберите действие (1-5): ").strip()
-
-        if choice == '1':
-            book_list_view(library)
-        elif choice == '2':
-            book_full_view(library)
-        elif choice == '3':
-            console_add_book(library)
-        elif choice == '4':
-            console_remove_book(library)
-        elif choice == '5':
-            print("До свидания!")
-            break
-        else:
+        action =  main_action.get(choice)
+        if action is None:
             print("Неверный ввод, попробуйте снова.")
-
+        else:
+            if action(library):
+                break
 
 
 library = {
